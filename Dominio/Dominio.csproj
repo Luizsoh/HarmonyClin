@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Interfaces\Generics\" />
+    <Folder Include="Interfaces\InterfacePortal\" />
+    <Folder Include="Interfaces\InterfaceServices\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
+
+</Project>
