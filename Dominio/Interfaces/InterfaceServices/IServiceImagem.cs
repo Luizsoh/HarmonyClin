@@ -3,9 +3,9 @@ using System.Threading.Tasks;
 
 namespace Dominio.Interfaces.InterfaceServices
 {
-    interface IServiceImagens
+    public interface IServiceImagem
     {
-        Task AddImagem(Imagens imagem);
-        Task UpdateImagem(Imagens imagem);
+        Task AddImagem(Imagem imagem);
+        Task UpdateImagem(Imagem imagem);
     }
 }

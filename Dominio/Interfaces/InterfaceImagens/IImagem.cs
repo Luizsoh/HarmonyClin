@@ -3,7 +3,7 @@ using Entidade.Entities;
 
 namespace Dominio.Interfaces.InterfaceImagens
 {
-    public interface IImagens : IGeneric<Imagens>
+    public interface IImagem : IGeneric<Imagem>
     {
     }
 }

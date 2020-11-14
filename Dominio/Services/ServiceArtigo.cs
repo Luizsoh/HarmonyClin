@@ -15,14 +15,26 @@ namespace Dominio.Services
             _IArtigo = IArtigo;
         }
 
-        public Task AddArtigo(Artigo artigo)
+        public async Task AddArtigo(Artigo artigo)
         {
-            throw new NotImplementedException();
+            var validaConteudo = artigo.ValidaString(artigo.Conteudo, "Conteudo");
+            var validaCategoria = artigo.ValidaInt(artigo.Categoria, "Categoria");
+
+            if (validaCategoria && validaConteudo)
+            {
+                await _IArtigo.Add(artigo);
+            }
         }
 
-        public Task UpdateArtigo(Artigo artigo)
+        public async Task UpdateArtigo(Artigo artigo)
         {
-            throw new NotImplementedException();
+            var validaConteudo = artigo.ValidaString(artigo.Conteudo, "Conteudo");
+            var validaCategoria = artigo.ValidaInt(artigo.Categoria, "Categoria");
+
+            if (validaCategoria && validaConteudo)
+            {
+                await _IArtigo.Update(artigo);
+            }
         }
     }
 }

@@ -1,9 +1,9 @@
 ﻿using Entidade.Entities;
 using System.Threading.Tasks;
 
-namespace Dominio.Interfaces.InterfaceServices
+namespace AplicacationApp.Interfaces
 {
-    public interface IServiceRelato
+    public interface InterfaceRelato : InterfaceGeneric<Relato>
     {
         Task AddRelato(Relato relato);
         Task UpdateRelato(Relato relato);

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Entidade.Entities
 {
     [Table("TB_RELATOS_CLIENTES")]
-    public class Relatos : Notifies
+    public class Relato : Notifies
     {
         [Column("REL_ID")]
         public int Relato_Id { get; set; }

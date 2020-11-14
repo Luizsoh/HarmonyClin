@@ -6,21 +6,21 @@ using System.Threading.Tasks;
 
 namespace Dominio.Services
 {
-    public class ServiceImagens : IServiceImagens
+    public class ServiceImagens : IServiceImagem
     {
-        private readonly IImagens _IImagens;
+        private readonly IImagem _IImagens;
 
-        public ServiceImagens(IImagens IImagens)
+        public ServiceImagens(IImagem IImagens)
         {
             _IImagens = IImagens;
         }
 
-        public Task AddImagem(Imagens imagem)
+        public Task AddImagem(Imagem imagem)
         {
             throw new NotImplementedException();
         }
 
-        public Task UpdateImagem(Imagens imagem)
+        public Task UpdateImagem(Imagem imagem)
         {
             throw new NotImplementedException();
         }

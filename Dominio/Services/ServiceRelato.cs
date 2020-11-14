@@ -8,18 +8,18 @@ namespace Dominio.Services
 {
     public class ServiceRelato : IServiceRelato
     {
-        private readonly IRelatos _IRelato;
+        private readonly IRelato _IRelato;
 
-        public ServiceRelato(IRelatos IRelato)
+        public ServiceRelato(IRelato IRelato)
         {
             _IRelato = IRelato;
         }
-        public Task AddRelato(Relatos relato)
+        public Task AddRelato(Relato relato)
         {
             throw new NotImplementedException();
         }
 
-        public Task UpdateRelato(Relatos relato)
+        public Task UpdateRelato(Relato relato)
         {
             throw new NotImplementedException();
         }

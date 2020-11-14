@@ -3,7 +3,7 @@ using Entidade.Entities;
 
 namespace Dominio.Interfaces.InterfaceRelatos
 {
-    public interface IRelatos : IGeneric<Relatos>
+    public interface IRelato : IGeneric<Relato>
     {
     }
 }

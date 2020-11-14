@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Entidade.Entities
 {
     [Table("TB_CADASTRO_IMAGENS")]
-    public class Imagens : Notifies
+    public class Imagem : Notifies
     {
         [Column("IMG_ID")]
         public int Img_Id { get; set; }
