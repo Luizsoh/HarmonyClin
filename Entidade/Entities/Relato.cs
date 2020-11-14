@@ -15,8 +15,8 @@ namespace Entidade.Entities
         [Column("REL_CAMINHO_ARQUIVO")]
         public string FilePath { get; set; }
 
-        [Column("REL_RELATO")]
-        public string Relato { get; set; }
+        [Column("REL_DEPOIMENTO")]
+        public string Depoimento { get; set; }
 
         [Column("REL_STATUS")]
         public bool Status { get; set; }
