@@ -1,7 +1,6 @@
 ﻿using Dominio.Interfaces.InterfaceArtigo;
 using Dominio.Interfaces.InterfaceServices;
 using Entidade.Entities;
-using System;
 using System.Threading.Tasks;
 
 namespace Dominio.Services
@@ -18,7 +17,7 @@ namespace Dominio.Services
         public async Task AddArtigo(Artigo artigo)
         {
             var validaConteudo = artigo.ValidaString(artigo.Conteudo, "Conteudo");
-            var validaCategoria = artigo.ValidaInt(artigo.Categoria, "Categoria");
+            var validaCategoria = artigo.ValidaInt((int)artigo.Categoria, "Categoria");
 
             if (validaCategoria && validaConteudo)
             {
@@ -29,7 +28,7 @@ namespace Dominio.Services
         public async Task UpdateArtigo(Artigo artigo)
         {
             var validaConteudo = artigo.ValidaString(artigo.Conteudo, "Conteudo");
-            var validaCategoria = artigo.ValidaInt(artigo.Categoria, "Categoria");
+            var validaCategoria = artigo.ValidaInt((int)artigo.Categoria, "Categoria");
 
             if (validaCategoria && validaConteudo)
             {

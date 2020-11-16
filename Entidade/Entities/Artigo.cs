@@ -1,4 +1,5 @@
-﻿using Entidade.Notifications;
+﻿using Entidade.Entities.Enums;
+using Entidade.Notifications;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -13,7 +14,7 @@ namespace Entidade.Entities
 
         [Column("ART_CATEGORIA")]
         [Display(Name = "Categoria")]
-        public int Categoria { get; set; } //CONVERTER ISSO PARA ENUM
+        public CategoriaArtigo Categoria { get; set; }
 
         [Column("ART_CONTEUDO")]
         [Display(Name = "Conteudo")]

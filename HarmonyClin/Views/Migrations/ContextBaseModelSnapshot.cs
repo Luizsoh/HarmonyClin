@@ -27,11 +27,6 @@ namespace Infraestrutura.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    b.Property<string>("CPF")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
-                        .HasColumnName("USR_CPF");
-
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
@@ -68,14 +63,6 @@ namespace Infraestrutura.Migrations
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Status")
-                        .HasColumnType("bit")
-                        .HasColumnName("USR_STATUS");
-
-                    b.Property<int>("Tipo")
-                        .HasColumnType("int")
-                        .HasColumnName("USR_TIPO");
 
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
