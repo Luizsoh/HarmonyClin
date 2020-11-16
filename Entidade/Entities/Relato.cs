@@ -18,9 +18,11 @@ namespace Entidade.Entities
         public string FilePath { get; set; }
 
         [Column("REL_DEPOIMENTO")]
+        [Display(Name = "Depoimento")]
         public string Depoimento { get; set; }
 
         [Column("REL_STATUS")]
+        [Display(Name = "Status")]
         public bool Status { get; set; }
     }
 }

@@ -12,9 +12,11 @@ namespace Entidade.Entities
         public int Artigo_Id { get; set; }
 
         [Column("ART_CATEGORIA")]
+        [Display(Name = "Categoria")]
         public int Categoria { get; set; } //CONVERTER ISSO PARA ENUM
 
         [Column("ART_CONTEUDO")]
+        [Display(Name = "Conteudo")]
         public string Conteudo { get; set; }
     }
 }

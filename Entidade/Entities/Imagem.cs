@@ -18,15 +18,19 @@ namespace Entidade.Entities
         public string FilePath { get; set; }
 
         [Column("IMG_TITULO")]
+        [Display(Name = "Titulo")]
         public string Titulo { get; set; }
 
         [Column("IMG_LEGENDA")]
+        [Display(Name = "Legenda")]
         public string Legenda { get; set; }
 
         [Column("IMG_LINK")]
+        [Display(Name = "Link")]
         public string Link { get; set; }
 
         [Column("IMG_STATUS")]
+        [Display(Name = "Status")]
         public bool Status { get; set; }
     }
 }
