@@ -1,4 +1,5 @@
 ﻿using Entidade.Notifications;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Entidade.Entities
@@ -7,6 +8,7 @@ namespace Entidade.Entities
     public class Relato : Notifies
     {
         [Column("REL_ID")]
+        [Key]
         public int Relato_Id { get; set; }
 
         [Column("REL_NOME_ARQUIVO")]

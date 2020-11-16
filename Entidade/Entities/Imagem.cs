@@ -1,4 +1,5 @@
 ﻿using Entidade.Notifications;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Entidade.Entities
@@ -7,6 +8,7 @@ namespace Entidade.Entities
     public class Imagem : Notifies
     {
         [Column("IMG_ID")]
+        [Key]
         public int Img_Id { get; set; }
 
         [Column("IMG_NOME_ARQUIVO")]
