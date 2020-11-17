@@ -1,18 +1,21 @@
-using HarmonyClin.Data;
+using AplicacationApp.Interfaces;
+using AplicacationApp.OpenApp;
+using Dominio.Interfaces.Generics;
+using Dominio.Interfaces.InterfaceArtigo;
+using Dominio.Interfaces.InterfaceImagens;
+using Dominio.Interfaces.InterfaceRelatos;
+using Dominio.Interfaces.InterfaceServices;
+using Dominio.Services;
 using Infraestrutura.Configuration;
+using Infraestrutura.Repository.Generics;
+using Infraestrutura.Repository.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace HarmonyClin
 {
@@ -36,6 +39,25 @@ namespace HarmonyClin
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ContextBase>();
             services.AddControllersWithViews();
+
+            //Generic
+            services.AddScoped(typeof(IGeneric<>), typeof(RepositoryGenerics<>));
+
+            //Imagem
+            services.AddScoped<IImagem, RepositoryImagem>();
+            services.AddScoped<IServiceImagem, ServiceImagem>();
+            services.AddScoped<InterfaceImagem, AppImagem>();
+
+            //relato
+            services.AddScoped<IServiceRelato, ServiceRelato>();
+            services.AddScoped<InterfaceRelato, AppRelato>();
+            services.AddScoped<IRelato, RepositoryRelato>();
+
+            //Aritgo
+            services.AddScoped<IServiceArtigo, ServiceArtigo>();
+            services.AddScoped<InterfaceArtigo, AppArtigo>();
+            services.AddScoped<IArtigo, RepositoryArtigo>();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

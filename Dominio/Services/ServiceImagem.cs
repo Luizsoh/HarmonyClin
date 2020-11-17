@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Dominio.Services
 {
-    public class ServiceImagens : IServiceImagem
+    public class ServiceImagem : IServiceImagem
     {
         private readonly IImagem _IImagens;
 
-        public ServiceImagens(IImagem IImagens)
+        public ServiceImagem(IImagem IImagens)
         {
             _IImagens = IImagens;
         }

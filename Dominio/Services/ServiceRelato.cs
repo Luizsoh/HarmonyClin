@@ -14,14 +14,25 @@ namespace Dominio.Services
         {
             _IRelato = IRelato;
         }
-        public Task AddRelato(Relato relato)
+
+        public async Task AddRelato(Relato relato)
         {
-            throw new NotImplementedException();
+            var validaDepoimento = relato.ValidaString(relato.Depoimento, "Depoimento");
+
+            if (validaDepoimento)
+            {
+                await _IRelato.Add(relato);
+            }
         }
 
-        public Task UpdateRelato(Relato relato)
+        public async Task UpdateRelato(Relato relato)
         {
-            throw new NotImplementedException();
+            var validaDepoimento = relato.ValidaString(relato.Depoimento, "Depoimento");
+
+            if (validaDepoimento)
+            {
+                await _IRelato.Update(relato);
+            }
         }
     }
 }

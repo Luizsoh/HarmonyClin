@@ -1,4 +1,5 @@
-﻿using HarmonyClin.Models;
+﻿using AplicacationApp.Interfaces;
+using HarmonyClin.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,18 +13,20 @@ namespace HarmonyClin.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        public readonly InterfaceImagem _InterfaceImagem;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, InterfaceImagem interfaceImagem)
         {
             _logger = logger;
+            _InterfaceImagem = interfaceImagem;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             return View();
         }
 
-        public IActionResult Privacy()
+        public async Task<IActionResult> Privacy()
         {
             return View();
         }

@@ -1,18 +1,20 @@
 ﻿using Entidade.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infraestrutura.Configuration
 {
-    public class ContextBase : IdentityDbContext<ApplicationUser>
+    public class ContextBase : IdentityDbContext<IdentityUser>
     {
-        public ContextBase(DbContextOptions<ContextBase> options):base(options)
+        public ContextBase(DbContextOptions<ContextBase> options) : base(options)
         {
         }
 
         public DbSet<Relato> Relato { get; set; }
         public DbSet<Artigo> Artigo { get; set; }
         public DbSet<Imagem> Imagem { get; set; }
+        public DbSet<IdentityUser> Usuario {get;set;}
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -21,6 +23,12 @@ namespace Infraestrutura.Configuration
                 optionsBuilder.UseSqlServer(GetStringConnectionConfig());
                 base.OnConfiguring(optionsBuilder);
             }
+        }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<IdentityUser>().ToTable("AspNetUsers").HasKey(t => t.Id);
+            base.OnModelCreating(builder);
         }
 
         private string GetStringConnectionConfig()
