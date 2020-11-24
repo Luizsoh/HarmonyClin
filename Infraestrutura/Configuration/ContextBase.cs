@@ -1,11 +1,9 @@
 ﻿using Entidade.Entities;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infraestrutura.Configuration
 {
-    public class ContextBase : IdentityDbContext<IdentityUser>
+    public class ContextBase : DbContext
     {
         public ContextBase(DbContextOptions<ContextBase> options) : base(options)
         {
@@ -14,7 +12,7 @@ namespace Infraestrutura.Configuration
         public DbSet<Relato> Relato { get; set; }
         public DbSet<Artigo> Artigo { get; set; }
         public DbSet<Imagem> Imagem { get; set; }
-        public DbSet<IdentityUser> Usuario {get;set;}
+        public DbSet<Usuario> Usuario {get;set;}
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -24,13 +22,10 @@ namespace Infraestrutura.Configuration
                 base.OnConfiguring(optionsBuilder);
             }
         }
-
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<IdentityUser>().ToTable("AspNetUsers").HasKey(t => t.Id);
             base.OnModelCreating(builder);
         }
-
         private string GetStringConnectionConfig()
         {
             //MUDAR PARA A STRING DO SEU BANCO ATÉ PUBLICARMOS EM ALGUM LUGAR (PROVAVELMENT HOSTINGER)

@@ -12,7 +12,8 @@
       "commandName": "IISExpress",
       "launchBrowser": true,
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ClientSecret": "3559AEBA888BAD2857BAC86D5A7E62340D3BA15EAE2407D6A2DA8E44666914B1"
       }
     },
     "HarmonyClin": {
@@ -22,6 +23,7 @@
       "applicationUrl": "https://localhost:5001;http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
+        //"ClientSecret": "3559AEBA888BAD2857BAC86D5A7E62340D3BA15EAE2407D6A2DA8E44666914B1"
       }
     }
   }

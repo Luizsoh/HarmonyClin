@@ -5,17 +5,21 @@ using Dominio.Interfaces.InterfaceArtigo;
 using Dominio.Interfaces.InterfaceImagens;
 using Dominio.Interfaces.InterfaceRelatos;
 using Dominio.Interfaces.InterfaceServices;
+using Dominio.Interfaces.InterfaceUsuario;
 using Dominio.Services;
 using Infraestrutura.Configuration;
 using Infraestrutura.Repository.Generics;
 using Infraestrutura.Repository.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
+using System;
+using System.Text;
 
 namespace HarmonyClin
 {
@@ -35,10 +39,9 @@ namespace HarmonyClin
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
-
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ContextBase>();
             services.AddControllersWithViews();
+
+            services.AddCors();
 
             //Generic
             services.AddScoped(typeof(IGeneric<>), typeof(RepositoryGenerics<>));
@@ -57,7 +60,31 @@ namespace HarmonyClin
             services.AddScoped<IServiceArtigo, ServiceArtigo>();
             services.AddScoped<InterfaceArtigo, AppArtigo>();
             services.AddScoped<IArtigo, RepositoryArtigo>();
-            
+
+            //Usuario
+            services.AddScoped<IServiceUsuario, ServiceUsuario>();
+            services.AddScoped<InterfaceUsuario, AppUsuario>();
+            services.AddScoped<IUsuario, RepositoryUsuario>();
+
+            string secret = Environment.GetEnvironmentVariable("ClientSecret");
+            var key = Encoding.ASCII.GetBytes(secret);
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(y =>
+            {
+                y.RequireHttpsMetadata = false;
+                y.SaveToken = true;
+                y.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                };
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -79,6 +106,8 @@ namespace HarmonyClin
 
             app.UseRouting();
 
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+
             app.UseAuthentication();
             app.UseAuthorization();
 
@@ -87,7 +116,6 @@ namespace HarmonyClin
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
-                endpoints.MapRazorPages();
             });
         }
     }

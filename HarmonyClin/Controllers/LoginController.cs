@@ -1,0 +1,46 @@
+﻿using AplicacationApp.Interfaces;
+using Entidade.Entities;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace HarmonyClin.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class LoginController : ControllerBase
+    {
+
+        public readonly InterfaceUsuario _InterfaceUsuario;
+
+        public LoginController(InterfaceUsuario interfaceUsuario)
+        {
+            _InterfaceUsuario = interfaceUsuario;
+        }
+
+        [HttpPost]
+        [Route("LoginAdm")]
+        [AllowAnonymous]
+        public async Task<ActionResult<dynamic>> Login([FromBody]Usuario usuario)
+        {
+            var user = await _InterfaceUsuario.RealizaLogin(usuario.CPF, usuario.Senha);
+
+            if (user == null)
+                return NotFound(new { message = "Usuário ou senha inválidos" });
+
+            var token = _InterfaceUsuario.GenerateToken(user);
+            user.Senha = "";
+
+            return new
+            {
+                user = user,
+                token = token
+            };
+        }
+
+    }
+}
