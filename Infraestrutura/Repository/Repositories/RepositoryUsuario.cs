@@ -24,7 +24,7 @@ namespace Infraestrutura.Repository.Repositories
         {
             using(var contexto = new ContextBase(_optionsBuilder))
             {
-                var retorno = await contexto.Usuario.Where(x => x.CPF.ToLower() == CPF.ToLower() && x.Senha.ToLower() == Senha.ToLower()).FirstOrDefaultAsync();
+                var retorno = await contexto.Usuario.Where(x => x.CPF == CPF && x.Senha == Senha).FirstOrDefaultAsync();
 
                 return retorno;
             }
