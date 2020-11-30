@@ -33,12 +33,10 @@ namespace HarmonyClin.Controllers
                 return NotFound(new { message = "Usuário ou senha inválidos" });
 
             var token = _InterfaceUsuario.GenerateToken(user);
-            user.Senha = "";
 
             return new
             {
-                user = user,
-                token = token
+                token = token.Result
             };
         }
 
