@@ -34,9 +34,9 @@ namespace HarmonyClin.Controllers
                 foreach (var imagem in imagens)
                 {
                     if (Debugger.IsAttached)
-                        imagem.FilePath = "localhost:44335" + imagem.FilePath;
+                        imagem.FilePath = "https://localhost:44335" + imagem.FilePath;
                     else
-                        imagem.FilePath = "localhost:44335" + imagem.FilePath; //ATUALIZAR PARA LINK DO SITE
+                        imagem.FilePath = "https://localhost:44335" + imagem.FilePath; //ATUALIZAR PARA LINK DO SITE
                 }
 
                 return new(imagens);
