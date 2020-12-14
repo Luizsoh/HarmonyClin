@@ -7,7 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HarmonyClin.Controllers
+namespace HarmonyClin_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -34,9 +34,9 @@ namespace HarmonyClin.Controllers
                 foreach (var imagem in imagens)
                 {
                     if (Debugger.IsAttached)
-                        imagem.FilePath = "https://localhost:44335" + imagem.FilePath;
+                        imagem.FilePath = "https://localhost:44307" + imagem.FilePath;
                     else
-                        imagem.FilePath = "https://localhost:44335" + imagem.FilePath; //ATUALIZAR PARA LINK DO SITE
+                        imagem.FilePath = "https://localhost:44307" + imagem.FilePath; //ATUALIZAR PARA LINK DO SITE
                 }
 
                 return new(imagens);
