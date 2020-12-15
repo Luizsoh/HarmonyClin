@@ -13,6 +13,7 @@ using Infraestrutura.Repository.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -44,8 +45,8 @@ namespace HarmonyClin_API
             });
 
             services.AddDbContext<ContextBase>(options =>
-    options.UseSqlServer(
-        Configuration.GetConnectionString("DefaultConnection")));
+                    options.UseSqlServer(
+                          Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddControllersWithViews();
 
@@ -73,6 +74,12 @@ namespace HarmonyClin_API
             services.AddScoped<IServiceUsuario, ServiceUsuario>();
             services.AddScoped<InterfaceUsuario, AppUsuario>();
             services.AddScoped<IUsuario, RepositoryUsuario>();
+
+            services.AddHttpsRedirection(options =>
+            {
+                options.RedirectStatusCode = StatusCodes.Status307TemporaryRedirect;
+                options.HttpsPort = 5001;
+            });
 
             string secret = Environment.GetEnvironmentVariable("ClientSecret");
             var key = Encoding.ASCII.GetBytes(secret);
